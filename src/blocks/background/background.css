@@ -1,0 +1,19 @@
+/* @font-face {
+    src: url(../../fonts/fonts.css) format ('woff');
+    font-family: 'Inter', Arial, Helvetica, sans-serif;;
+} */
+
+.background {
+    background-color: #000000;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 28px;
+    position: relative;
+    min-height: 100vh;
+}
+
+@media screen and (min-width: 880px) {
+    .background {
+        padding: 45px 0 0;
+    }
+}
