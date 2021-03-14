@@ -8,7 +8,7 @@ function App() {
     const [isEditAvatarFormOpened, setIsEditAvatarFormOpened] = React.useState(false);
     const [isAddPlaceFormOpened, setIsAddPlaceFormOpened] = React.useState(false);
     const [isEditProfileFormOpened, setIsEditProfileFormOpened] = React.useState(false); 
-    /* const [isConfimDeleteFormOpened, setIsConfimDeleteFormOpened] = React.useState(false); */
+    const [isConfimDeleteFormOpened, setIsConfimDeleteFormOpened] = React.useState(false);
     
     function handleEditAvatarClick(){
         setIsEditAvatarFormOpened(true);
@@ -19,13 +19,14 @@ function App() {
     function handleEditProfileClick(){
         setIsEditProfileFormOpened(true);
     }
-    /* function handleConfimDeleteForm(){
-        setIsConfimDeleteFormOpened(true)
-    } */
+    function handleConfimDeleteForm(){
+        setIsConfimDeleteFormOpened(true);
+    }
     function closeAllPopups(){
         setIsEditAvatarFormOpened(false);
         setIsAddPlaceFormOpened(false);
         setIsEditProfileFormOpened(false);
+        setIsConfimDeleteFormOpened(false);
     }
     
     return (
@@ -76,12 +77,12 @@ function App() {
             <span id="avatar-link-error" className="popup__error"></span>
         </PopupWithForm>
 
-        {/* <PopupWithForm 
+        <PopupWithForm 
             name = 'confim'
             title = 'Вы уверены?'
             submitText = 'Да'
             isOpened = {isConfimDeleteFormOpened}
-        /> */}
+        />
 
         <template className="template">
             <article className="element">
