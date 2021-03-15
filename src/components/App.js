@@ -21,9 +21,7 @@ function App() {
     function handleEditProfileClick(){
         setIsEditProfileFormOpened(true);
     }
-    function handleConfimDeleteForm(){
-        setIsConfimDeleteFormOpened(true);
-    }
+    
     function closeAllPopups(){
         setIsEditAvatarFormOpened(false);
         setIsAddPlaceFormOpened(false);
@@ -37,9 +35,9 @@ function App() {
         <Header />
 
         <Main 
-         EditAvatarClick={handleEditAvatarClick}
-         EditProfileClick={handleEditProfileClick}
-         AddPlaceClick={handleAddPlaceClick}
+         onEditAvatar={handleEditAvatarClick}
+         onEditProfile={handleEditProfileClick}
+         onAddPlace={handleAddPlaceClick}
          onCardClick={setSelectedCard}
          />
 
@@ -53,8 +51,9 @@ function App() {
             onClose = {closeAllPopups}
         >
             <input name="name" type="text" id="name-title" placeholder='Ваше Имя'  className="popup__field popup__field_value_name" minLength="2" maxLength="40" required noValidate/>
-            <span id="name-title-error" className="popup__error"></span>
-            <input name="about" type="text" id="job-title"  placeholder='Коротко о себе' className="popup__field popup__field_value_job" minLength="2" maxLength="200" required noValidate/>                <span id="job-title-error" className="popup__error"></span>
+            <span id="name-title-error" className="popup__error"/>
+            <input name="about" type="text" id="job-title"  placeholder='Коротко о себе' className="popup__field popup__field_value_job" minLength="2" maxLength="200" required noValidate/>
+            <span id="job-title-error" className="popup__error"/>
         </PopupWithForm>
         
         <PopupWithForm 
@@ -65,9 +64,9 @@ function App() {
             onClose = {closeAllPopups}
         >
             <input name="name" type="text" id="name-element" placeholder="Название" className="popup__field popup__field_value_title" minLength="2" maxLength="30" required noValidate/>
-            <span id="name-element-error" className="popup__error"></span>
+            <span id="name-element-error" className="popup__error"/>
             <input name="link" type="url" id="link-element" placeholder="ссылка на картинку" className="popup__field popup__field_value_link" required noValidate/>
-            <span id="link-element-error" className="popup__error"></span>
+            <span id="link-element-error" className="popup__error"/>
         </PopupWithForm>
 
         <PopupWithForm 
@@ -78,7 +77,7 @@ function App() {
             onClose = {closeAllPopups}
         >
             <input name="avatar" type="url" id="avatar-link" placeholder="ссылка на аватар" className="popup__field popup__field_value_avatar-link" required noValidate/>
-            <span id="avatar-link-error" className="popup__error"></span>
+            <span id="avatar-link-error" className="popup__error"/>
         </PopupWithForm>
 
         <PopupWithForm 

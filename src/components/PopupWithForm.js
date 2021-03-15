@@ -5,7 +5,7 @@ function PopupWithForm(props) {
     return(
         <div className={`popup popup_type_${props.name} ${popupIsVisible}`}>
             <form className={`popup__form popup__form_${props.name}`}>
-                <button type="button" aria-label="закрыть" className="popup__close-icon" onClick={props.onClose}></button>
+                <button type="button" aria-label="закрыть" className="popup__close-icon" onClick={props.onClose}/>
                 <h2 className="popup__name">
                     {props.title}
                 </h2>

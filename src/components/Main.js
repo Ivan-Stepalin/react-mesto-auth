@@ -47,17 +47,16 @@ function Main(props) {
             <section className="profile">
                 <div  className="profile__avatar-place">
                     <img className="profile__avatar" alt="Аватар" src={userAvatar}/>
-                    <div  className="profile__avatar-button" onClick={props.EditAvatarClick}></div>
+                    <div  className="profile__avatar-button" onClick={props.onEditAvatar}/>
                 </div>
                 <div className="profile__info">
                     <div className="profile__title-box">
                         <h1 className="profile__title">{userName}</h1>
-                        <button type="button" aria-label="редактирование" className="profile__edit-button" onClick={props.EditProfileClick}>
-                        </button>     
+                        <button type="button" aria-label="редактирование" className="profile__edit-button" onClick={props.onEditProfile}/>    
                     </div>
                     <p className="profile__subtitle">{userDescription}</p>
                 </div>
-                <button type="button" aria-label="добавить" className="profile__add-button" onClick={props.AddPlaceClick}></button>
+                <button type="button" aria-label="добавить" className="profile__add-button" onClick={props.onAddPlace}/>
             </section>
 
 
