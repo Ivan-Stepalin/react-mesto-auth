@@ -43,9 +43,6 @@ class Api {
       headers: this._headers
     })
       .then(onError)
-      .then((res) => {
-        handleGetCard(res)
-      })
   }
 
   addCard(inputData, handleAddCard, renderLoading) {
