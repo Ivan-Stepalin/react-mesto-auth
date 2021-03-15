@@ -4,7 +4,7 @@ function ImagePopup(props) {
     props.card ? popupIsVisible = `popup_opened` : popupIsVisible = ``;
     
     return (
-        <div className={`popup popup_image ${popupIsVisible}`}>
+        <div className={`popup popup_type_image ${popupIsVisible}`}>
             <div className="popup__box">
                 <button type="button" aria-label="закрыть" className="popup__close-icon" onClick={props.onClose}></button>
                 <img className="popup__image" alt={props.name} src={props.card.link}/>

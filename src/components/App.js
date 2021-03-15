@@ -32,12 +32,6 @@ function App() {
         setSelectedCard(false);
     }
     
-
-    const handleCardClick = (card) => {
-        setSelectedCard(card);
-        console.log(`work`)
-    }
-
     return (
     <>
         <Header />
