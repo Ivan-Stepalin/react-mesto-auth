@@ -11,7 +11,7 @@ class Api {
     this._headers = config.headers;
   }
 
-  getUserInfo(handleUserInfo) {
+  getUserInfo() {
     return fetch(`${this._url}users/me`, {
       method: "GET",
       headers: this._headers
@@ -64,18 +64,23 @@ class Api {
       })
   }
 
-  deleteCard(idCard, handleDeleteCard) {
+  deleteCard(idCard) {
     return fetch(`${this._url}cards/${idCard}`, {
       method: "DELETE",
       headers: this._headers
     })
       .then(onError)
-      .then((res) => {
-        handleDeleteCard(res)
-      })
   }
 
-  likeCard(idCard, handleLikeCard) {
+  changeLikeCardStatus(idCard, isLike) {
+    return fetch(`${this._url}cards/likes/${idCard}`, {
+      method: isLike ? "PUT" : "DELETE",
+      headers: this._headers
+    })
+      .then(onError)     
+  }
+
+  /* likeCard(idCard, handleLikeCard) {
     return fetch(`${this._url}cards/likes/${idCard}`, {
       method: "PUT",
       headers: this._headers
@@ -96,7 +101,7 @@ class Api {
       .then((res) => {
         handleDisLikeCard(res);
       })
-  }
+  } */
 
   updateAvatar(avatarLink, handleAddAvatar, renderLoading) {
     renderLoading(true)
