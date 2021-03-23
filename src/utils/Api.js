@@ -19,8 +19,7 @@ class Api {
       .then(onError)
   }
 
-  sendUserInfo(inputData, handleUserInfo, renderLoading) {
-    renderLoading(true);
+  sendUserInfo(inputData) {
     return fetch(`${this._url}users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -30,12 +29,6 @@ class Api {
       })
     })
       .then(onError)
-      .then((res) => {
-        handleUserInfo(res)
-      })
-      .finally(() => {
-        renderLoading(false);
-      })
   }
 
   initialCard(handleGetCard) {

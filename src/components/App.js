@@ -5,6 +5,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import React from 'react';
 import ImagePopup from '../components/ImagePopup.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
+import EditProfilePopup from './EditProfilePopup.js';
 import api from "../utils/Api.js";
 
 function App() {
@@ -34,18 +35,17 @@ function App() {
         setSelectedCard(false);
     }
 
-    /* function handleCardLike(card) {
-        // Снова проверяем, есть ли уже лайк на этой карточке
-        const isLiked = card.likes.some(i => i._id === currentUser.id);
-        console.log(card)
-        // Отправляем запрос в API и получаем обновлённые данные карточки
-        api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-            setCard((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-        })
-        .catch((err)=>{
-            console.log(`ошибка ${err}`);
-        })
-    } */
+    function handleUserProfileSubmit(input) {
+        api
+            .sendUserInfo(input)
+            .then((res)=>{
+                setCurrentUser(res);
+                closeAllPopups();
+            })
+            .catch((err) => {
+                console.log(`ошибка ${err}`);
+            })
+    }
 
     React.useEffect(() => {
         handleUserData();
@@ -57,7 +57,6 @@ function App() {
             .getUserInfo()
             .then((data) => {
                 setCurrentUser({ name: data.name, about: data.about, avatar: data.avatar, id: data._id });
-                /* console.log(data[0]) */
             })
             .catch((err) => {
                 console.log(`ошибка ${err}`);
@@ -69,7 +68,6 @@ function App() {
             .initialCard()
             .then(data => {
                 const cards = data.map(item => {
-                    /* console.log(data[0]) */
                     return {
                         name: item.name,
                         link: item.link,
@@ -92,13 +90,6 @@ function App() {
 
                 <Footer />
 
-                <PopupWithForm name='title' title='Редактировать профиль' submitText='Сохранить' isOpened={isEditProfileFormOpened} onClose={closeAllPopups}>
-                    <input name="name" type="text" id="name-title" placeholder='Ваше Имя' className="popup__field popup__field_value_name" minLength="2" maxLength="40" required noValidate />
-                    <span id="name-title-error" className="popup__error" />
-                    <input name="about" type="text" id="job-title" placeholder='Коротко о себе' className="popup__field popup__field_value_job" minLength="2" maxLength="200" required noValidate />
-                    <span id="job-title-error" className="popup__error" />
-                </PopupWithForm>
-
                 <PopupWithForm name='element' title='Новое место' submitText='Сохранить' isOpened={isAddPlaceFormOpened} onClose={closeAllPopups}>
                     <input name="name" type="text" id="name-element" placeholder="Название" className="popup__field popup__field_value_title" minLength="2" maxLength="30" required noValidate />
                     <span id="name-element-error" className="popup__error" />
@@ -114,7 +105,9 @@ function App() {
                 <PopupWithForm name='confim' title='Вы уверены?' submitText='Да' isOpened={isConfimDeleteFormOpened} onClose={closeAllPopups} />
 
                 <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-                <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+                
+                <EditProfilePopup isOpened={isEditProfileFormOpened} onClose={closeAllPopups} onUpdateUser={handleUserProfileSubmit}/>
+            
             </CurrentUserContext.Provider>
 
         </>
