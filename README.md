@@ -18,4 +18,6 @@
 Для запуска проекта ввести в терминале npm start
 ***
 https://ivan-stepalin.github.io/mesto-react/
-![alt text](./SPA_image.png "Вид приложения")
+![ScreenShot](https://github.com/Ivan-Stepalin/mesto-react/blob/main/screenshots/SPA_image.PNG "Вид приложения")
+![ScreenShot](https://github.com/Ivan-Stepalin/mesto-react/blob/main/screenshots/Popup.PNG "Попап с добавлением нового места")
+https://github.com/Ivan-Stepalin/mesto-react/blob/main/screenshots/Popup.PNG
