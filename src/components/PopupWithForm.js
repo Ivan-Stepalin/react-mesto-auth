@@ -10,7 +10,7 @@ function PopupWithForm(props) {
                     {props.title}
                 </h2>
                     {props.children}
-                <button type="submit" className={`popup__submit-button ${props.submitButtonState}`} /* activeStatus={props.submitButtonState} */>{props.submitText}</button>
+                <button type="submit" className={`popup__submit-button `}>{props.submitText}</button>
             </form>       
         </div>
     )

@@ -1,4 +1,7 @@
+import React from 'react';
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 function Card(props) {
+    const currentUser = React.useContext(CurrentUserContext)
     function handleClick() {
         props.onCardClick(props.card);
     }
