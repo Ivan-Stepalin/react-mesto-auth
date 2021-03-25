@@ -18,4 +18,4 @@
 Для запуска проекта ввести в терминале npm start
 ***
 https://ivan-stepalin.github.io/mesto-react/
-![ScreenShot](https://raw.github.com/Ivan-Stepalin/mesto-react/main/Вид_приложения.PNG)
+![alt text](/Вид_приложения.png "Вид приложения")
