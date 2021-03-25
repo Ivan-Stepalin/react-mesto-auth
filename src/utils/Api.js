@@ -38,8 +38,7 @@ class Api {
       .then(onError)
   }
 
-  addCard(inputData, handleAddCard, renderLoading) {
-    renderLoading(true)
+  addCard(inputData) {
     return fetch(`${this._url}cards`, {
       method: "POST",
       headers: this._headers,
@@ -49,12 +48,6 @@ class Api {
       })
     })
       .then(onError)
-      .then((res) => {
-        handleAddCard(res)
-      })
-      .finally(() => {
-        renderLoading(false);
-      })
   }
 
   deleteCard(idCard) {
@@ -70,48 +63,20 @@ class Api {
       method: isLike ? "PUT" : "DELETE",
       headers: this._headers
     })
-      .then(onError)     
+      .then(onError)
   }
 
-  /* likeCard(idCard, handleLikeCard) {
-    return fetch(`${this._url}cards/likes/${idCard}`, {
-      method: "PUT",
-      headers: this._headers
-    })
-      .then(onError)
-      .then((res) => {
-        handleLikeCard(res);
-        return res;
-      })
-  }
 
-  disLikeCard(idCard, handleDisLikeCard) {
-    return fetch(`${this._url}cards/likes/${idCard}`, {
-      method: "DELETE",
-      headers: this._headers
-    })
-      .then(onError)
-      .then((res) => {
-        handleDisLikeCard(res);
-      })
-  } */
 
-  updateAvatar(avatarLink, handleAddAvatar, renderLoading) {
-    renderLoading(true)
+  updateAvatar(avatarLink) {
     return fetch(`${this._url}users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: avatarLink
+        avatar: avatarLink.avatar
       })
     })
       .then(onError)
-      .then((res) => {
-        handleAddAvatar(res)
-      })
-      .finally(() => {
-        renderLoading(false)
-      })
   }
 };
 
