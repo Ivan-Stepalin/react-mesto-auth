@@ -14,13 +14,13 @@ function Card(props) {
         props.onCardDelete(props.card)
     }
 
-    const isOwn = props.card.owner._id === props.currentUser.id;
+    const isOwn = props.card.owner._id === currentUser.id;
 
     const deleteButtonVisability = (
         `element__bracket ${isOwn ? `` : `element__bracket_disabled`}`
     )
 
-    const isLiked = props.card.likes.some(i => i._id === props.currentUser.id);
+    const isLiked = props.card.likes.some(i => i._id === currentUser.id);
 
     const cardLikeButtonClassName = (`element__group ${isLiked ? `element__group_active` : ``}`);
 

@@ -30,11 +30,10 @@ function Main(props) {
                     props.card.map((item, i) =>
                         <Card
                             card={item}
-                            currentUser={currentUser}
                             onCardClick={props.onCardClick}
                             onCardLike={props.onCardLike}
                             onCardDelete={props.onCardDelete}
-                            key={i}
+                            key={item._id}
                         />
                     )
                 }

@@ -16,7 +16,7 @@ function App() {
     const [isEditProfileFormOpened, setIsEditProfileFormOpened] = React.useState(false);
     const [isConfimDeleteFormOpened, setIsConfimDeleteFormOpened] = React.useState(false);
     const [selectedCard, setSelectedCard] = React.useState(false);
-    const [currentUser, setCurrentUser] = React.useState([]);
+    const [currentUser, setCurrentUser] = React.useState({});
     const [card, setCard] = React.useState([]);
 
     function handleEditAvatarClick() {
@@ -69,7 +69,9 @@ function App() {
                 setCard([res, ...card]);
                 closeAllPopups();;
             })
-            
+            .catch((err) => {
+                console.log(`ошибка ${err}`);
+            })          
     }
 
     function handleCardLike(card) {
@@ -126,7 +128,9 @@ function App() {
                 })
                 setCard(cards)
             })
-            .catch(err => console.log(err))
+            .catch((err) => {
+                console.log(`ошибка ${err}`);
+            })
     }
 
     return (
