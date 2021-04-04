@@ -13,7 +13,7 @@
   },
   "author": "Stepalin-Ivan",
   "description": "Проект представляет собой сайт с возможностью добавлять фото, сортировать их. В данном проекте отрабатывались знания по React. В данном проекте реализован вывод фото на сайт из массива. Добавлены всплывающие окна добавления фото на сайт. Картинку с фото можно увеличить чтобы подробнее рассмотреть. Также фото можно удалять и ставить им лайки.\r ",
-  "homepage": "https://ivan-stepalin.github.io/mesto-react/",
+  "homepage": "https://ivan-stepalin.github.io/mesto-react-auth/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
