@@ -11,6 +11,8 @@ class Api {
     this._headers = config.headers;
   }
 
+  
+  
   getUserInfo() {
     return fetch(`${this._url}users/me`, {
       method: "GET",

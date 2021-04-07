@@ -9,6 +9,12 @@ import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js'
 import api from "../utils/api.js";
 import AddPlacePopup from './AddPlacePopup.js';
+import Login from './Login';
+import Register from './Register';
+import { Route, Switch, useHistory } from 'react-router-dom';
+import InfoToolTip from './InfoToolTip.js';
+import ProtectedRoute from './ProtectedRoute.js';
+import apiRegister from '../utils/apiRegister.js'
 
 function App() {
     const [isEditAvatarFormOpened, setIsEditAvatarFormOpened] = React.useState(false);
@@ -18,13 +24,19 @@ function App() {
     const [selectedCard, setSelectedCard] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({});
     const [card, setCard] = React.useState([]);
+    const [isSuccessReg, setIsSuccessReg] = React.useState(false);
+    const [isErrorReg, setIsErrorReg] = React.useState(false);
+    const [loggedIn, setLoggedIn] = React.useState(false);
+    const history = useHistory(); 
 
     function handleEditAvatarClick() {
         setIsEditAvatarFormOpened(true);
     }
+
     function handleAddPlaceClick() {
         setIsAddPlaceFormOpened(true);
     }
+
     function handleEditProfileClick() {
         setIsEditProfileFormOpened(true);
     }
@@ -35,6 +47,8 @@ function App() {
         setIsEditProfileFormOpened(false);
         setIsConfimDeleteFormOpened(false);
         setSelectedCard(false);
+        setIsSuccessReg(false);
+        setIsErrorReg(false);
     }
 
     function handleUserProfileSubmit(input) {
@@ -71,7 +85,7 @@ function App() {
             })
             .catch((err) => {
                 console.log(`ошибка ${err}`);
-            })          
+            })
     }
 
     function handleCardLike(card) {
@@ -132,13 +146,37 @@ function App() {
                 console.log(`ошибка ${err}`);
             })
     }
+    
+    function handleRegisterUser(registerData) {
+        apiRegister
+        .registerUser(registerData, ()=>{setIsSuccessReg(true)})
+        .then(()=> {
+            setLoggedIn(true);
+            setIsSuccessReg(true);
+            history.push('/sign-in');
+        })
+    }
 
+    
     return (
         <>
             <CurrentUserContext.Provider value={currentUser}>
+
                 <Header />
 
-                <Main card={card} onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardClick={setSelectedCard} onCardDelete={handleCardDelete} onCardLike={handleCardLike} />
+                <Switch>
+                   
+                    <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main} card={card} onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onCardClick={setSelectedCard} onCardDelete={handleCardDelete} onCardLike={handleCardLike}/>
+                    
+                    <Route path="/sign-up">
+                        <Register onRegisterUser={handleRegisterUser} />
+                    </Route>
+
+                    <Route path="/sign-in">
+                        <Login /* onLoginrUser={handleLoginUser} */ />
+                    </Route>
+
+                </Switch>
 
                 <Footer />
 
@@ -150,7 +188,11 @@ function App() {
 
                 <EditAvatarPopup isOpened={isEditAvatarFormOpened} onClose={closeAllPopups} onUpdateAvatar={handleUserAvatarSubmit} />
 
-                <AddPlacePopup isOpened={isAddPlaceFormOpened} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit}/>
+                <AddPlacePopup isOpened={isAddPlaceFormOpened} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
+
+                <InfoToolTip text={"Вы успешно зарегистрировались"} image={true} isOpened={isSuccessReg} onClose={closeAllPopups} />
+
+                <InfoToolTip text={`Что-то пошло не так! Попробуйте ещё раз.`} image={false} isOpened={isErrorReg} onClose={closeAllPopups} />
 
             </CurrentUserContext.Provider>
         </>
