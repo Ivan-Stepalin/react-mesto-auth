@@ -1,14 +1,14 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import Card from "./Card.js"
-
+import Header from './Header.js'
 function Main(props) {
 
     const currentUser = React.useContext(CurrentUserContext);
     
     return (
         <main className="container">
-
+            <Header name={`Выйти`} onLogout={props.onLogout} link={'/sign-in'} email={props.email}/>
             <section className="profile">
                 <div className="profile__avatar-place">
                     <img className="profile__avatar" alt="Аватар" src={currentUser.avatar} />
