@@ -51,7 +51,7 @@ function App() {
           console.log(`ошибка ${err}`);
         });
     }
-  }, []);
+  });
 
   function handleDeleteToken() {
     localStorage.removeItem("token");
@@ -205,6 +205,8 @@ function App() {
       .loginUser(loginData)
       .then((result) => {
         localStorage.setItem(`token`, result.token);
+        setEmail(loginData.email)
+        console.log(email)
         setLoggedIn(true);
         setIsSuccessReg(true);
         history.push("/");
